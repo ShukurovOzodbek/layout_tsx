@@ -7,9 +7,10 @@ const colors = {
     },
 }
 const breakpoints = {
-    sm: '320px',
-    md: '768px',
-    lg: '960px',
+    msm: '600px',
+    sm: '771px',
+    md: '800px',
+    lg: '980px',
     xl: '1200px',
     '2xl': '1236px',
 }
