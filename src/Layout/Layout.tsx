@@ -1,33 +1,36 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Box, Stack, Text, Button, Input, Link, Image } from '@chakra-ui/react'
 import backImg from '../../public/images/backImg.png'
 import movImg from '../../public/images/movImg.png'
 import prev from '../../public/images/prev.png'
-import insta from '../../public/images/insta.png'
-import facebook from '../../public/images/facebook.png'
-import vk from '../../public/images/vk.png'
-import youtube from '../../public/images/youtube.png'
 import next from '../../public/images/next.png'
 import { Textarea } from "@chakra-ui/react"
 import menu from '../../public/images/menu.png'
+import { useAxios } from '../hooks/useAxios'
+import { useCrud } from '../hooks/useCrud'
+
 
 interface Props {
     children: JSX.Element
 }
 
 const Layout: React.FC<Props> = ({ children }: Props) => {
+    const handleDel = () => {
+        useCrud.Delete(`http://localhost:3001/users/${41}`)
+    }
+
     return (
         <Box sx={{ width: '100%', }}>
             <Stack sx={{ display: 'flex', justifyContent: 'center', gap: '130px', alignItems: 'center', color: 'white', width: '100%', padding: '40px', background: `url(${backImg.src})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', flexDirection: 'column' }}>
                 <Stack sx={{ flexDirection: ({ '2xl': 'row', lg: 'column', md: "column", sm: 'column' }), justifyContent: 'space-between', alignItems: 'center', gap: '15px', width: '85%' }}>
-                    <Stack sx={{ alignItems: 'center', gap: "55px", flexDirection: 'row', width: '100%', display: ({sm: 'block', msm: 'none'}) }}>
+                    <Stack sx={{ alignItems: 'center', gap: "55px", flexDirection: 'row', width: '100%', display: ({ sm: 'flex', msm: 'none' }) }}>
                         <Link href={'/'} sx={{ fontSize: ({ xl: '16px', lg: '12px', md: '11px', sm: '11px' }) }}>Главная</Link>
                         <Link href={'/'} sx={{ fontSize: ({ xl: '16px', lg: '12px', md: '11px', sm: '11px' }) }}>о театре</Link>
                         <Link href={'/'} sx={{ fontSize: ({ xl: '16px', lg: '12px', md: '11px', sm: '11px' }) }}>Наши постановки</Link>
                         <Link href={'/'} sx={{ fontSize: ({ xl: '16px', lg: '12px', md: '11px', sm: '11px' }) }}>партнеры театра</Link>
                         <Link href={'/'} sx={{ fontSize: ({ xl: '16px', lg: '12px', md: '11px', sm: '11px' }) }}>контакты</Link>
                     </Stack>
-                    <Image display={{sm: 'none', msm: 'block'}} src={menu.src} />
+                    <Image display={{ sm: 'none', msm: 'block' }} src={menu.src} />
                     <Box>
                         <Link href={'/'} sx={{ fontSize: ({ xl: '16', lg: '14px', md: '13px' }) }}>+7 495 123-45-67</Link>
                         <Box sx={{ width: ({ xl: '125px', lg: '125px', md: '107px' }), borderTop: '2px solid #D1A954' }}></Box>
@@ -37,9 +40,9 @@ const Layout: React.FC<Props> = ({ children }: Props) => {
                     <Stack sx={{ width: '50%', gap: '40px' }}>
                         <Text fontSize={{ '2xl': '6xl', lg: '2xl', md: '3xl', sm: '3xl' }} width={{ xl: '500px', md: "250px", sm: "250px" }}>Большой театр</Text>
                         <Text fontSize={{ xl: 'sm', lg: '12px', md: '12px', sm: '12px' }} color={'#FFFFFF'}>Большо́й теа́тр — петербургский театр, существовавший в 1784—1886 годах, с 1886 года — Петербургская консерватория. Первое постоянное в Санкт-Петербурге, крупнейшее в России и одно из крупнейших театральных зданий в Европе XVIII.</Text>
-                        <Button sx={{ backgroundColor: 'brand.orange', width: ({ lg: '60%', xl: '30%' }), borderRadius: '1px' }}>афиша</Button>
+                        <Button onClick={() => handleDel()} sx={{ backgroundColor: 'brand.orange', width: ({ lg: '60%', xl: '30%' }), borderRadius: '1px' }}>афиша</Button>
                     </Stack>
-                    <Stack sx={{ gap: '20px', display: ({sm: 'block', msm: 'none'}) }}>
+                    <Stack sx={{ gap: '20px', display: ({ sm: 'block', msm: 'none' }) }}>
                         <img width={'340px'} src={`${movImg.src}`} alt="" />
                         <Stack sx={{ justifyContent: 'space-between', flexDirection: 'row' }}>
                             <img style={{ cursor: "pointer" }} width={'90px'} src={`${prev.src}`} alt="" />

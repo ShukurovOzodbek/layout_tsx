@@ -25,6 +25,8 @@ const Home: NextPage = () => {
   const image7: string = theatre.src
   const star: string = stars.src
   const gazprom: string = gaz.src
+
+
   return (
     <>
       <Head>
